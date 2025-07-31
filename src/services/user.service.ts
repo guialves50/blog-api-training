@@ -1,27 +1,30 @@
 import { prisma } from "../database/database.connection";
+import { CreateUserDTO } from "../DTO/user.create.dto";
 
 export class UserService {
-  async createUser(data: { name: string; email: string; password: string }) {
-    await prisma.user.create({ data });
+  async createUser(data: any) {
+      await prisma.user.create({data})
   }
-
+  
   async findAllUser() {
-    await prisma.user.findMany();
+    await prisma.user.findMany()
   }
 
   async findUserById(userId: string) {
     await prisma.user.findUnique({
       where: {
-        id: userId,
-      },
-    });
+        id: userId
+      }
+    })
   }
 
   async deleteUserById(userId: string) {
     await prisma.user.delete({
       where: {
-        id: userId,
-      },
-    });
+        id: userId
+      }
+    })
   }
+
+  
 }
